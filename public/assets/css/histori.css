@@ -1,0 +1,85 @@
+body {
+    text-align: center;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.history {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.arrow {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.rounded-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.rounded-rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 300px;
+    height: 100px;
+    background-color: #E3E3E3;
+    text-align: start;
+    color: black;
+    border-radius: 20px;
+    padding-left: 30px;
+}
+
+.Tahun {
+    color: black;
+}
+
+.element-di-bawah {
+    width: 300px;
+    height: 100px;
+    background-color: #FF8787;
+    border-radius: 20px;
+    display: none;
+    overflow: hidden;
+}
+
+.judul-bulan {
+    text-align: start;
+    padding-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    height: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

@@ -1,0 +1,95 @@
+/* styles.css */
+header {
+    
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 20px;
+    margin-bottom: 20px; /* Menambahkan jarak antara teks "EVENT" dan kotak */
+}
+
+.image-container {
+    padding-top: 20px;
+    width: 90px; /* Lebar 400 */
+    height: 600px; /* Panjang 600 */
+    background-color:#eb5b34; /* Warna latar belakang kotak */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #333; /* Menambahkan border */
+    border-radius: 20px; /* Membuat kotak menjadi rounded */
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 20px; /* Menambahkan jarak antara gambar dan kotak */
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.image-container {
+    flex: 6;
+    text-align: center;
+    margin-right: 20 px;
+    padding-right: 20px;
+    margin-left: 20px;
+    padding-left: 2-px;
+}
+
+.carousel-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    margin: 5px;
+}
+
+.carousel-box {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+}
+
+.carousel-controls {
+    display: flex;
+    flex : 3;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+.prev-button,
+.next-button {
+    background-color: #eb5b34;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.prev-button:hover,
+.next-button:hover {
+    background-color: #0056b3;
+}
+

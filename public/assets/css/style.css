@@ -1,0 +1,83 @@
+body{
+    background: #F3F3F3!important;
+}
+
+header{
+    background: #E33F3F;
+    padding: 15px;
+}
+
+header .box{
+    background: white;
+    border-radius: 100px;
+    margin: 50px 150px 50px 150px;
+}
+
+header img{
+    transform: scale(0.8);
+}
+
+header .menu{
+    gap:35px;
+}
+
+header .menu a{
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+header .menu .active{
+    position : relative;
+    color: #E33F3F;
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%; 
+    width: 50%; 
+    border-bottom: 4px solid #E33F3F; 
+    transform: translateX(-50%); 
+}   
+
+#calendar a{
+    color: #333;
+    text-decoration: none;
+}
+
+.search{
+    background-color: white;
+    border-radius: 100px;
+    margin: 0 25% 0 25%;
+    padding: 10px;
+    margin-top: -30px;
+}
+
+.search input{
+    border: 0 solid rgba(255, 0, 0, 0);
+    margin-left: 15px;
+    width: 100%;
+}
+
+.search input:focus{
+    border: 0 solid rgba(255, 0, 0, 0);
+    outline: none;
+}
+
+#upload-event{
+    font-weight: 700;
+    color: black;
+    border-bottom: black solid 3px;
+}
+
+.item{
+    border-radius: 25px 25px 0 0;
+    background-color: white;
+}
+
+.item img{
+    object-fit: contain;
+    border-radius: 25px 25px 0 0;
+}

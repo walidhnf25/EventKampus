@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+  }
+  
+  header, footer {
+    height: 50px; /* Menambahkan tinggi untuk header dan footer */
+    background-color: #3498db;
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 20px; /* Menambahkan jarak atas */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: flex-end; /* Menggeser elemen ke kanan */
+  }
+  
+  .square {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+  }
+  
+  .event-text {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px; /* Menambahkan jarak ke atas */
+  }
+  
+  h1 {
+    font-size: 36px; /* Memperbesar teks "Event" */
+  }
+  

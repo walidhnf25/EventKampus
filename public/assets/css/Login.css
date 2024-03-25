@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(255, 0, 70);
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  height: 100vh;
+  }
+.container{
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  border-radius: 5px;
+}
+.card-title{
+  font-weight: 800;
+  padding-top: 20px;
+}
+
+input {
+  border: none;
+  background-color: white;
+  border-bottom: 3px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 15px;
+  transition: border-color 0.5s, color 0.5s; /* Menambahkan transisi warna teks */
+  width: 250px;
+}
+.btn{
+  transform: translateY(10px);
+  font-size: 14px;
+  border-radius: 5px;
+}

@@ -1,0 +1,20 @@
+/* Custom Styles */
+.bg-red {
+    background-color: red !important;
+  }
+  
+  .text-white {
+    color: white !important;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  
