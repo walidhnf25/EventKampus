@@ -1,85 +1,66 @@
 body {
-    text-align: center;
+    height: 100vh; /* Set body height to full viewport height */
+    margin: 0; /* Remove default margin */
 }
 
-.header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
-
-.footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-.content {
+.main {
     display: flex;
     flex-direction: column;
+    flex:1;
+}
+
+.year-navigation {
+    justify-content: right;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.year-navigation button {
+    margin: 0 10px;
+}
+
+.month-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
 }
 
-.history {
+.month-box-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.month-box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-}
-
-.arrow {
-    font-size: 24px;
+    justify-content: center;
     margin-right: 10px;
-}
-
-.rounded-container {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
     cursor: pointer;
 }
 
-.rounded-rectangle {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 300px;
-    height: 100px;
-    background-color: #E3E3E3;
-    text-align: start;
-    color: black;
-    border-radius: 20px;
-    padding-left: 30px;
-}
-
-.Tahun {
-    color: black;
-}
-
-.element-di-bawah {
-    width: 300px;
-    height: 100px;
-    background-color: #FF8787;
-    border-radius: 20px;
-    display: none;
-    overflow: hidden;
-}
-
-.judul-bulan {
-    text-align: start;
-    padding-top: 10px;
+.arrow-button {
+    cursor: pointer;
 }
 
 table {
-    width: 100%;
     border-collapse: collapse;
-    height: 100%;
+    width: 100%;
+    margin-top: 10px;
 }
 
-table, th, td {
-    border: 1px solid black;
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
 }

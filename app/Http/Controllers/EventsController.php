@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Events;
+use App\Models\Users;
 use Illuminate\Support\Facades\File;
 class EventsController extends Controller
 {
@@ -13,6 +14,33 @@ class EventsController extends Controller
         $event = Events::get();
         return view('listEvent', ['list' => $event]);
     }
+
+    public function showEvent($id)
+    {
+        $event = Events::find($id);
+        if ($event) {
+            return view('Event', compact('event'));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function daftarEvent(Request $request, $eventId)
+    {
+        $user = Users::find(auth()->id()); // Mengambil data pengguna yang sudah login, sesuai dengan kasus Anda
+
+        if ($user) {
+            $event = Events::find($eventId); // Mengambil event yang ingin diikuti
+
+            if ($event) {
+                $user->events()->attach($event); // Menambahkan pengguna ke dalam event
+                return redirect()->back()->with('success', 'Berhasil mendaftar event!');
+            }
+        }
+
+        return redirect()->back()->with('error', 'Gagal mendaftar event.');
+    }
+
 
     // Menyimpan data event sesuai inputan form
     public function store(Request $request){

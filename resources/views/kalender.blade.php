@@ -35,17 +35,14 @@
             });
             calendar.render();
 
-            // Adding sample events to the calendar
+            @foreach($user->events as $event)
             calendar.addEvent({
-                title: 'Test Event 1',
-                start: '2023-10-08T12:30:00',
-                end: '2023-10-08T13:30:00'
+                title: '{{$event->namaEvent}}',
+                start: '{{(new DateTime($event->tanggalMulai))->format("Y-m-d\TH:i:s")}}',
+                end: '{{(new DateTime($event->tanggalAkhir))->format("Y-m-d\TH:i:s")}}'
             });
-            calendar.addEvent({
-                title: 'Test Event 2',
-                start: '2023-10-25T12:30:00',
-                end: '2023-10-25T13:30:00'
-            });
+            @endforeach
+            
         });
     </script>
 </head>

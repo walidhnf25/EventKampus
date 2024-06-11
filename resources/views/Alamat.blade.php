@@ -24,29 +24,29 @@
             </div> 
         </div> 
     </header>
-    <main>
-        <div class="content-container">
-            <div class="image-container">
-                <img src="your-image.jpg" alt="Event Image">
-            </div>
-            <div class="carousel-controls">
-                <button class="prev-button">Prev</button>
-                <div class="carousel-container">
-                    <div class="carousel-slide">
-                        <div class="carousel-box">Detail Event</div>
-                        
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-box">Alamat Event</div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="carousel-box">Jadwal Event</div>
-                    </div>
-                </div>
-                <button class="next-button">Next</button>
-            </div>
+   <!-- Update your main section in the view -->
+<main>
+    <div class="content-container">
+        @foreach($events as $event)
+        <div class="image-container">
+            <img src="{{ asset($event->fotoEvent) }}" alt="Event Image">
         </div>
-    </main>
+        <div class="carousel-controls">
+            <button class="prev-button">Prev</button>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <div class="carousel-box">{{ $event->deskripsi }}</div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-box">{{ $event->tanggalMulai }} - {{ $event->tanggalAkhir }}</div>
+                </div>
+            </div>
+            <button class="next-button">Next</button>
+        </div>
+        @endforeach
+    </div>
+</main>
+
     <footer class="bg-dark text-white text-center py-4">
         <div class="container bg-dark">
             <div class="row">

@@ -62,38 +62,37 @@
             <div class="row">
             <!-- Event Kamu section with a carousel -->
             <div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @php
-                    $flag = 0;
-                @endphp
-                @while($flag<count($list))
-                <div class="carousel-item {{($flag==0)?'active':''}}">
-                    <div class="row">
+                <div class="carousel-inner">
                     @php
-                        $temp = $flag
-                    @endphp 
-                    @for($i = $temp; $i <= $temp+5 && $i < count($list) ; $i++)
-                        @php
-                            $d = $list[$i];
-                        @endphp
-                        <div class="col-2">
-                            <div class="shadow item" style="width: 100%;">
-                                <img src="{{asset('uploads/' . $d->fotoEvent)}}" alt="event" width="100%" height="150px" style="object-fit:cover;">
-                                <div class="p-3">
-                                    <h4>{{ $d->namaEvent }}</h4>
-                                    <p>{{ $d->deskripsi }}</p>
-                                </div>
+                        $flag = 0;
+                    @endphp
+                    @while($flag < count($list))
+                        <div class="carousel-item {{ ($flag == 0) ? 'active' : '' }}">
+                            <div class="row">
+                                @php
+                                    $temp = $flag;
+                                @endphp
+                                @for($i = $temp; $i < $temp + 6 && $i < count($list); $i++)
+                                    @php
+                                        $d = $list[$i];
+                                    @endphp
+                                    <div class="col-2">
+                                        <a href="{{ route('event.show', ['id' => $d->idEvent]) }}" class="shadow item" style="display: block; width: 100%; text-decoration: none; color: inherit;">
+                                            <img src="{{ asset('uploads/' . $d->fotoEvent) }}" alt="event" width="100%" height="150px" style="object-fit: cover;">
+                                            <div class="p-3">
+                                                <h4>{{ $d->namaEvent }}</h4>
+                                                <p>{{ $d->deskripsi }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @php
+                                        $flag++;
+                                    @endphp
+                                @endfor
                             </div>
                         </div>
-                        @php
-                            $flag++;
-                        @endphp
-                    @endfor
-                    </div>     
-                </div> 
-                @endwhile
-            
-            </div>
+                    @endwhile
+                </div>
             
             <!-- Carousel controls -->
             <button href="Event" class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
@@ -127,13 +126,13 @@
                             $d = $list[$i];
                         @endphp
                         <div class="col-2">
-                            <div class="shadow item" style="width: 100%;">
-                                <img src="{{asset('uploads/' . $d->fotoEvent)}}" alt="event" width="100%" height="150px" style="object-fit:cover;">
+                            <a href="{{ route('event.show', ['id' => $d->idEvent]) }}" class="shadow item" style="display: block; width: 100%; text-decoration: none; color: inherit;">
+                                <img src="{{ asset('uploads/' . $d->fotoEvent) }}" alt="event" width="100%" height="150px" style="object-fit: cover;">
                                 <div class="p-3">
                                     <h4>{{ $d->namaEvent }}</h4>
                                     <p>{{ $d->deskripsi }}</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         @php
                             $flag++;

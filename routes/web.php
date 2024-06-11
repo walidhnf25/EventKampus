@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\HistoriController;
+use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\ListEventController;
 use App\Http\Controllers\UploadEventController;
 /*
@@ -48,7 +51,6 @@ Route::post('/Registrasi', RegistrasiController::class .'@store')->name('users.s
 # ---------------------------------------------------------------------------------
 
 
-
 Route::get('/', function () {
     return view('Registrasi');
 });
@@ -61,18 +63,14 @@ Route::post('Login', function () {
     return view('Login');
 });
 Route::get('dashboard', [DashboardController::class, 'index']);
-
-Route::get('kalender', function () {
-    return view('kalender');
-});
+Route::get('kalender', [KalenderController::class, 'index']);
 
 Route::get('pembayaran', function () {
     return view('pembayaran');
 });
 
-Route::get('Event', function () {
-    return view('Event');
-});
+Route::get('/events/{id}', [EventsController::class, 'showEvent'])->name('event.show');
+Route::post('/daftar-event/{eventId}', [EventsController::class, 'daftarEvent'])->name('daftar.event');
 
 Route::get('eventregist', function () {
     return view('eventregist');
@@ -95,14 +93,11 @@ Route::get('Review', function () {
     return view('Review');
 });
 
-Route::get('history', function () {
-    return view('histori');
-});
+Route::get('history', [HistoriController::class, 'getEventData']);
 
 Route::get('detailEvent', function () {
     return view('detailEvent');
 });
 
-Route::get('alamat', function () {
-    return view('Alamat');
-});
+
+Route::get('alamat', [AlamatController::class, 'index']);

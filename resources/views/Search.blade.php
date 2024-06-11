@@ -44,27 +44,11 @@
         </div>
     </nav>
     <main>
-        <div class="searching">
-            <form action="{{ route('event.search') }}" method="GET">
-                @csrf
-                <table class="search-container">
-                    <tr>
-                        <td>
-                            <input type="text" placeholder="Search" class="search" name="search">
-                        </td>
-                        <td>
-                            <button type="submit"><i class="material-icons">search</i></button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-
         <div class="card-container">
             @if(isset($events) && count($events) > 0)
                 @foreach($events as $event)
                     <div class="cards">
-                        <img src="{{ asset('assets/image/Event1.jpg') }}" alt="" />
+                        <img src="{{ asset('uploads/' . $event->fotoEvent) }}" alt="" />
                         <div class="card-content">
                             <h2>{{ $event->namaEvent }}</h2>
                             <p>{{ $event->deskripsi }}</p>
@@ -74,7 +58,7 @@
             @else
                 <p>Tidak ada hasil pencarian.</p>
             @endif
-        </div>
+        </div>        
     </main>
     <footer class="footer">
         <div class="container">

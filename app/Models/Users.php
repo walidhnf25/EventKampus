@@ -23,4 +23,9 @@ class Users extends Model implements AuthenticatableContract
     ];
 
     protected  $primaryKey = 'idUser';
+
+    public function events()
+    {
+        return $this->belongsToMany(Events::class, 'event_user', 'idUser', 'idEvent');
+    }
 }

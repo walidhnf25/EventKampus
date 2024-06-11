@@ -15,42 +15,47 @@
         <div class="white-box">
             <label class="logo">Evenfy</label>
             <ul>
-                <li><a href="dashboard">Dashboard</a></li>
-                <li><a href="kalender">Kalender</a></li>
-                <li><a href="history">History</a></li>
-                <li><a href="alamat">Alamat</a></li>
-                <li><a href="Review">Ulasan</a></li>
-                <li><a href="Profile"><img src="{{asset('assets/image/profile.png')}}" alt="" /></a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/kalender">Kalender</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/alamat">Alamat</a></li>
+                <li><a href="/Review">Ulasan</a></li>
+                <li><a href="/Profile"><img src="{{asset('assets/image/profile.png')}}" alt="" /></a></li>
             </ul>
         </div>
         <div class="searching">
-            <table class="search-container">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="Search"><i class="material-icons">search</i></a>
-                    </td>
-                </tr>
-            </table>
+            <form action="{{ route('event.search') }}" method="GET">
+                @csrf
+                <table class="search-container">
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Search" class="search" name="search">
+                        </td>
+                        <td>
+                            <button type="submit"><i class="material-icons">search</i></button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </nav>
     <div class="background">
         <div class="row">
             <div class="event-text">
-                <span>5 sampai 9 Januari 2024, Telkom University Convention Hall, Bandung</span>
-                <h2>Change Your Mind<br /> To Become Successful</h2>
-                <a href="eventregist">
-                    <button class="button-77" role="button">Daftar Sekarang</button>
-                </a>
-                
+                <span>{{ $event->namaEvent }}{{ $event->deskripsi }}</span>
+                <h2>{{ $event->deskripsi }}</h2>
+                <h2> {{ $event->tanggalMulai }} sampai {{ $event->tanggalAkhir }}</h2>
+                <form action="{{ route('daftar.event', ['eventId' => $event->idEvent]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="button-77" role="button">Daftar Sekarang</button>
+                </form>
             </div>
             <div class="event2">
-                <img src="{{asset('assets/image/hero-right.png')}}" alt="" />
+                <img src="{{ asset('uploads/' . $event->fotoEvent) }}" alt="{{ $event->namaEvent }}" />
             </div>
         </div>
     </div>
+    
     <div class="Details">
         <img src="{{asset('assets/image/Speaker.jpg')}}" alt="" />
         <div class="text-content">

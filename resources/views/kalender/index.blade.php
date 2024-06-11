@@ -13,19 +13,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
+                initialView: 'dayGridMonth'
+            });
+            calendar.addEvent({
+                title: 'Testt',
+                start: '2024-02-02T00:00:00',
+                end: '2024-02-02T00:00:00'
             });
             calendar.render();
-            calendar.addEvent({
-                title: 'TEst Event',
-                start: '2023-10-08T12:30:00',
-                end: '2023-10-08T13:30:00'
-            });
-            calendar.addEvent({
-                title: 'TEst Event',
-                start: '2023-10-25T12:30:00',
-                end: '2023-10-25T13:30:00'
-            });
+
+            
         });
     </script>
 </head>

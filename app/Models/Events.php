@@ -12,4 +12,9 @@ class Events extends Model
     public $table = "events";
 
     protected  $primaryKey = 'idEvent';
+
+    public function users()
+    {
+        return $this->belongsToMany(Users::class, 'event_user', 'idEvent', 'idUser');
+    }
 }

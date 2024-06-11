@@ -1,31 +1,34 @@
-// script.js
-const carouselSlides = document.querySelectorAll('.carousel-slide');
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button');
+const firstEventContainer = document.querySelector('.event-container:first-child');
+const eventImages = firstEventContainer.querySelectorAll('.image-container img');
+const carouselSlides = firstEventContainer.querySelectorAll('.carousel-slide');
+const prevButton = firstEventContainer.querySelector('.prev-button');
+const nextButton = firstEventContainer.querySelector('.next-button');
 
 let currentIndex = 0;
 
-function showSlide(index) {
+function showEvent(index) {
+    eventImages.forEach((image, i) => {
+        image.style.display = i === index ? 'block' : 'none';
+    });
+
     carouselSlides.forEach((slide, i) => {
-        if (i === index) {
-            slide.style.display = 'block';
-        } else {
-            slide.style.display = 'none';
-        }
+        slide.style.display = i === index ? 'block' : 'none';
     });
 }
 
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % carouselSlides.length;
-    showSlide(currentIndex);
+function nextEvent() {
+    currentIndex = (currentIndex + 1) % eventImages.length;
+    showEvent(currentIndex);
 }
 
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + carouselSlides.length) % carouselSlides.length;
-    showSlide(currentIndex);
+function prevEvent() {
+    currentIndex = (currentIndex - 1 + eventImages.length) % eventImages.length;
+    showEvent(currentIndex);
 }
 
-showSlide(currentIndex);
+// Initial display
+showEvent(currentIndex);
 
-prevButton.addEventListener('click', prevSlide);
-nextButton.addEventListener('click', nextSlide);
+// Event listeners
+prevButton.addEventListener('click', prevEvent);
+nextButton.addEventListener('click', nextEvent);
