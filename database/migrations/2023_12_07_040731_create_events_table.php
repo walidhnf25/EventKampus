@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('idEvent');
             $table->string('fotoEvent');
             $table->string('namaEvent');
-            $table->dateTime('tanggalMulai');
-            $table->dateTime('tanggalAkhir');
+            $table->date('tanggalMulai');
+            $table->date('tanggalAkhir');
             $table->integer('harga');
             $table->string('deskripsi');
             $table->timestamps();

@@ -44,7 +44,7 @@
             <label class="form-label" for="tanggalMulai">Tanggal Mulai</label>
             <div class="row">
                 <div class="col">
-                    <input type="datetime-local" name="tanggalMulai" class="form-control" value="{{$e->tanggalMulai}}" />
+                    <input type="date" name="tanggalMulai" class="form-control" value="{{$e->tanggalMulai}}" />
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <label class="form-label" for="tanggalAkhir">Tanggal Akhir</label>
             <div class="row">
                 <div class="col">
-                    <input type="datetime-local" name="tanggalAkhir" class="form-control" value="{{$e->tanggalAkhir}}"/>
+                    <input type="date" name="tanggalAkhir" class="form-control" value="{{$e->tanggalAkhir}}"/>
                 </div>
             </div>
         </div>

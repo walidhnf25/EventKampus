@@ -8,8 +8,6 @@ use App\Models\Users;
 use Illuminate\Support\Facades\File;
 class EventsController extends Controller
 {
-    //
-    // Menampilkan list pada table halaman Events
     public function index(){
         $event = Events::get();
         return view('listEvent', ['list' => $event]);
@@ -27,59 +25,63 @@ class EventsController extends Controller
 
     public function daftarEvent(Request $request, $eventId)
     {
-        $user = Users::find(auth()->id()); // Mengambil data pengguna yang sudah login, sesuai dengan kasus Anda
+        $user = Users::find(auth()->id()); 
 
         if ($user) {
-            $event = Events::find($eventId); // Mengambil event yang ingin diikuti
+            $event = Events::find($eventId); 
 
             if ($event) {
-                $user->events()->attach($event); // Menambahkan pengguna ke dalam event
+                if ($user->events->contains($eventId)) {
+                    return redirect()->back()->with('warning', 'Anda sudah terdaftar di event ini.');
+                }
+                $user->events()->attach($event); 
                 return redirect()->back()->with('success', 'Berhasil mendaftar event!');
+            } else {
+                return redirect()->back()->with('error', 'Event tidak ditemukan.');
             }
+        } else {
+            return redirect()->back()->with('error', 'Pengguna tidak ditemukan. Silakan login terlebih dahulu.');
         }
-
-        return redirect()->back()->with('error', 'Gagal mendaftar event.');
-    }
-
-
-    // Menyimpan data event sesuai inputan form
-    public function store(Request $request){
-        $image = $request->file('fotoEvent');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('uploads'), $imageName);
-
-        $event = new Events;
-        $event->namaEvent = $request->namaEvent;
-        $event->fotoEvent = $imageName;
-        $event->tanggalMulai = $request->tanggalMulai;
-        $event->tanggalAkhir = $request->tanggalAkhir;
-        $event->harga = $request->harga;
-        $event->deskripsi = $request->deskripsi;
-        $event->save();
-        return redirect('Events')->with('msg', 'Tambah berhasil');
     }
     
-    public function update(Request $request, $idEvent) {
-        
+    public function update(Request $request, $idEvent)
+    {
+        $request->validate([
+            'namaEvent' => 'required|string|max:255',
+            'fotoEvent' => 'nullable|mimes:jpg,jpeg,png',
+            'tanggalMulai' => 'required|date|after:' . now()->toDateString(),
+            'tanggalAkhir' => 'required|date|after:' . now()->toDateString(),
+            'harga' => 'required|numeric|min:0|max:30000',
+            'deskripsi' => 'required|string',
+        ]);
+
         $event = Events::find($idEvent);
+
         if ($request->hasFile('fotoEvent')) {
             $image = $request->file('fotoEvent');
             $imageName = time() . '.' . $image->extension();
+            
             $image->move(public_path('uploads'), $imageName);
 
             $filePath = public_path('uploads/' . $event->fotoEvent);
             if (File::exists($filePath)) {
                 File::delete($filePath);
             }
+
+            $event->fotoEvent = $imageName;
         }
+
         $event->namaEvent = $request->namaEvent;
-        $event->fotoEvent = $imageName;
         $event->tanggalMulai = $request->tanggalMulai;
         $event->tanggalAkhir = $request->tanggalAkhir;
         $event->harga = $request->harga;
         $event->deskripsi = $request->deskripsi;
-        $event->save();
-        return redirect('Events')->with('msg', 'Edit berhasil');
+
+        if ($event->save()) {
+            return redirect('Events')->with('success', 'Edit event berhasil');
+        } else {
+            return redirect('Events')->with('error', 'Edit event gagal');
+        }
     }
 
     public function showUpdate($idEvent){
@@ -99,13 +101,22 @@ class EventsController extends Controller
 
     public function search(Request $request)
     {
-    $search = $request->input('search'); // Ambil inputan pencarian dari form
+        $search = $request->input('search');
 
-    // Lakukan pencarian berdasarkan namaEvent atau deskripsi event
-    $events = Events::where('namaEvent', 'like', "%$search%")
-                    ->orWhere('deskripsi', 'like', "%$search%")
-                    ->get();
+        if (empty($search)) {
+            return view('search')->with('events', []);
+        }
 
-    return view('search')->with('events', $events); // Mengembalikan view search.blade.php dengan data events
+        $words = explode(' ', $search);
+
+        $words = array_slice($words, 0, 10);
+
+        $search = implode(' ', $words);
+
+        $events = Events::where('namaEvent', 'like', "%$search%")
+            ->orWhere('deskripsi', 'like', "%$search%")
+            ->get();
+
+        return view('search')->with('events', $events);
     }
 }

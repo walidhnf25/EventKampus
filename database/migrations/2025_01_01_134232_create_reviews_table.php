@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_user', function (Blueprint $table) {
-            $table->id('id');
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('idUser')->on('users')->onDelete('cascade');
-            $table->bigInteger('event_id')->unsigned()->index()->nullable();
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id();  // ID untuk review
+            $table->bigInteger('event_id')->unsigned();  // Pastikan tipe data sama dengan idEvent di tabel events
             $table->foreign('event_id')->references('idEvent')->on('events')->onDelete('cascade');
+            $table->text('review');  // Kolom untuk review
             $table->timestamps();
-
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_user');
+        Schema::dropIfExists('reviews');
     }
 };

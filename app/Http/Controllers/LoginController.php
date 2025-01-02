@@ -14,18 +14,18 @@ class LoginController extends Controller
         ]);
     }
 
-    public function authenticate(Request $request){
-        
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
             'noHP' => 'required',
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
+        } else {
+            return back()->with('loginError', 'Login Failed!'); 
         }
-
-        return back()->with('loginError', 'Login Failed!');
     }
 }

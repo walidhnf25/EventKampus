@@ -10,6 +10,8 @@ use App\Http\Controllers\HistoriController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\ListEventController;
 use App\Http\Controllers\UploadEventController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UlasanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,9 +91,11 @@ Route::get('Profile', function () {
     return view('Profile');
 });
 
-Route::get('Review', function () {
-    return view('Review');
-});
+Route::get('/Profile', [UsersController::class, 'showProfile'])->name('Profile');
+Route::post('/Profile/update', [UsersController::class, 'update'])->name('Profile.update');
+
+Route::get('Review', [UlasanController::class, 'showEvents'])->name('events.review');
+Route::post('events/{id}/Review', [UlasanController::class, 'submitReview'])->name('submit.review');
 
 Route::get('history', [HistoriController::class, 'getEventData']);
 

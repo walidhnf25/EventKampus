@@ -11,6 +11,23 @@
 </head>
 
 <body>
+    <div class="row">
+        @if(session('success'))
+        <div class="col-12">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="col-12">
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        </div>
+        @endif
+    </div>
     <nav>
         <div class="white-box">
             <label class="logo">Evenfy</label>
@@ -45,9 +62,9 @@
                 <span>{{ $event->namaEvent }}{{ $event->deskripsi }}</span>
                 <h2>{{ $event->deskripsi }}</h2>
                 <h2> {{ $event->tanggalMulai }} sampai {{ $event->tanggalAkhir }}</h2>
-                <form action="{{ route('daftar.event', ['eventId' => $event->idEvent]) }}" method="POST">
+                <form id="registerForm" action="{{ route('daftar.event', ['eventId' => $event->idEvent]) }}" method="POST">
                     @csrf
-                    <button type="submit" class="button-77" role="button">Daftar Sekarang</button>
+                    <button type="button" class="button-77" role="button" onclick="confirmRegistration()">Daftar Sekarang</button>
                 </form>
             </div>
             <div class="event2">
@@ -152,6 +169,34 @@
             </div>
         </div>
    </footer>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+<script>
+    function confirmRegistration() {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Anda tidak dapat membatalkan pendaftaran ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Daftar!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('registerForm').submit();
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.auto-hide');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.transition = 'opacity 0.5s ease'; // Animasi transisi
+                alert.style.opacity = '0'; // Menghilangkan secara perlahan
+                setTimeout(() => alert.remove(), 500); // Menghapus elemen setelah animasi
+            }, 3000); // Waktu tampil (3 detik)
+        });
+    });
+</script>

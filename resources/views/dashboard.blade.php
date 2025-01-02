@@ -48,8 +48,9 @@
         <button type="submit">
             <img src="{{asset('assets/image/search.png')}}" alt="logo" />
         </button>
-        <input type="text" placeholder="Pencarian" name="search">
+        <input type="text" placeholder="Pencarian" name="search" id="searchInput">
     </form>
+    
     <!-- Main content section -->
     <main class="p-5">
         <!-- Upload Event link -->
@@ -194,4 +195,17 @@
         </div>
     </footer>
 </body>
+<script>
+        document.querySelector("form").addEventListener("submit", function(e) {
+    const searchInput = document.getElementById("searchInput");
+    const searchWords = searchInput.value.trim().split(/\s+/);
+
+    // Jika ada lebih dari 10 kata, batalkan pengiriman form dan ambil hanya 10 kata pertama
+    if (searchWords.length > 10) {
+        e.preventDefault();
+        searchInput.value = searchWords.slice(0, 10).join(" ");
+        alert("Pencarian dibatasi hingga 10 kata.");
+    }
+});
+    </script>
 </html>

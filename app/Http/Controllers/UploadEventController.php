@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 class UploadEventController extends Controller
 {
-    //
+    public function store(Request $request)
+    {
+        $request->validate([
+            'namaEvent' => 'required|string|max:255',
+            'fotoEvent' => 'required|mimes:jpg,jpeg,png',
+            'tanggalMulai' => 'required|date|after:' . now()->toDateString(),
+            'tanggalAkhir' => 'required|date|after:' . now()->toDateString(),
+            'harga' => 'required|numeric|min:0|max:30000',
+            'deskripsi' => 'required|string',
+        ]);
 
-        // Menyimpan data event sesuai inputan form
-    public function store(Request $request){
         $image = $request->file('fotoEvent');
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('uploads'), $imageName);
@@ -25,7 +32,11 @@ class UploadEventController extends Controller
         $event->harga = $request->harga;
         $event->deskripsi = $request->deskripsi;
         $event->user_id = $user_id;
-        $event->save();
-        return redirect('Events')->with('msg', 'Tambah berhasil');
+
+        if ($event->save()) {
+            return redirect('Events')->with('success', 'Upload event berhasil');
+        } else {
+            return redirect('Events')->with('error', 'Upload event gagal');
+        }
     }
 }

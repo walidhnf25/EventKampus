@@ -37,6 +37,24 @@
     </header>
     </header>
 
+    <div class="row">
+        @if(session('success'))
+        <div class="col-12">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="col-12">
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        </div>
+        @endif
+    </div>
+
     <div class="row justify-content-center" style="margin-top:5%">
         <div class="col-10">
             <h2 class="text-center">Uploaded Events</h2>
@@ -115,6 +133,15 @@
         $(document).ready( function () {
             // Initialize DataTables with your table
             $('#sortTable').DataTable();
+        });
+
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.classList.add('fade');
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 150); // Hapus elemen setelah animasi selesai
+            }, 5000);
         });
     </script>
 </body>

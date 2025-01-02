@@ -11,7 +11,8 @@ class DashboardController extends Controller
     
     public function index(){
         $user = Auth::user();
-        $event = Events::get();
-        return view('dashboard', ['list' => $event, 'user' => $user]);
+        $events = Events::get();
+        $list = $events;
+        return view('dashboard', compact('list', 'events', 'user'));
     }
 }
